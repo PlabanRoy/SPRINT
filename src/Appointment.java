@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Appointment {
 
-	@SuppressWarnings("unused")
+	//@SuppressWarnings("unused")
 	public static void makeAppointment() {
 		Scanner sc = new Scanner(System.in);
 		int centerCode = 0;
@@ -16,6 +16,7 @@ public class Appointment {
 		int c2testCode = 0;
 		Date appointmentDate = new Date();
 		System.out.println("WELCOME TO PBP HEALTHCARE");
+		List<String> Appointmentlist = new ArrayList<>();
 		List<String> c1testlist = new ArrayList<>();
 		c1testlist.add("Test (t1)");
 		c1testlist.add("Test (t2)");
@@ -35,6 +36,7 @@ public class Appointment {
 			centerCode = getCenter(sc);
 			switch (centerCode) {
 			case 1:
+				Appointmentlist.add(0, "center1");
 				boolean inCorrect = true;
 				do {
 					System.out.println(c1testlist);
@@ -42,6 +44,12 @@ public class Appointment {
 					if (c1testCode > 2) {
 						System.out.println("Invalid Choice!!! Please Select from 1 & 2");
 					} else {
+						if(c1testCode==1){
+							Appointmentlist.add(1, "Test (t1)");
+						}
+						else{
+							Appointmentlist.add(1, "Test (t2)");
+						}
 						inCorrect = false;
 						SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
 						Guest gstObject = new Guest();
@@ -50,11 +58,13 @@ public class Appointment {
 							String cindate = sc.next();
 							Date date1 = myFormat.parse(cindate);
 							gstObject.setIndate(date1);
+							Appointmentlist.add(2,cindate);
 						} catch (ParseException e) {
-							e.printStackTrace();
 						}
-
+						
+						System.out.println("your respose is as follows: "+Appointmentlist);
 						System.out.println(" ThankYou \n Your Response Has Been Recorded \n Please visit Again");
+						 
 
 						System.exit(0);
 					}
@@ -62,6 +72,7 @@ public class Appointment {
 				} while (inCorrect);
 				break;
 			case 2:
+				Appointmentlist.add(0,"center2");
 				boolean inCorrect1 = true;
 				do {
 					System.out.println(c2testlist);
@@ -71,6 +82,12 @@ public class Appointment {
 					if (c2testCode > 2) {
 						System.out.println("Invalid Choice!!! Please Select from 1 & 2");
 					} else {
+						if(c1testCode==2){
+							Appointmentlist.add(1, "Test (t3)");
+						}
+						else{
+							Appointmentlist.add(1, "Test (t4)");
+						}
 						inCorrect = false;
 						SimpleDateFormat myFormat1 = new SimpleDateFormat("dd/MM/yyyy");
 						Guest gstObject1 = new Guest();
@@ -79,11 +96,13 @@ public class Appointment {
 							String cindate = sc.next();
 							Date date1 = myFormat1.parse(cindate);
 							gstObject1.setIndate(date1);
+							Appointmentlist.add(2,cindate);
 						} catch (ParseException e) {
 							e.printStackTrace();
 						}
+						System.out.println("your respose is as follows: "+Appointmentlist);
 						System.out.println(" ThankYou \n Your Response Has Been Recorded \n Please visit Again");
-
+						 
 						System.exit(0);
 					}
 
