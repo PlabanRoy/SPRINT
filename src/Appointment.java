@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Appointment {
 
+	@SuppressWarnings("unused")
 	public static void makeAppointment() {
 		Scanner sc = new Scanner(System.in);
 		int centerCode = 0;
@@ -35,40 +36,58 @@ public class Appointment {
 			switch (centerCode) {
 			case 1:
 				boolean inCorrect = true;
-				System.out.println(c1testlist);
-				c1testCode = getTest(sc);
-				SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
-				Guest gstObject = new Guest();
-				try {
-					System.out.println("Enter appointment date (dd/MM/yyyy):");
-					String cindate = sc.next();
-					Date date1 = myFormat.parse(cindate);
-					gstObject.setIndate(date1);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				System.out.println("ThankYou \n Your Response Has Been Recorded \n Please visit Again");
-		
-				System.exit(0);
-				
+				do {
+					System.out.println(c1testlist);
+					c1testCode = getTest(sc);
+					if (c1testCode > 2) {
+						System.out.println("Invalid Choice!!! Please Select from 1 & 2");
+					} else {
+						inCorrect = false;
+						SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+						Guest gstObject = new Guest();
+						try {
+							System.out.println("Enter appointment date (dd/MM/yyyy):");
+							String cindate = sc.next();
+							Date date1 = myFormat.parse(cindate);
+							gstObject.setIndate(date1);
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+
+						System.out.println(" ThankYou \n Your Response Has Been Recorded \n Please visit Again");
+
+						System.exit(0);
+					}
+
+				} while (inCorrect);
 				break;
 			case 2:
-				System.out.println(c2testlist);
-				System.out.println("select test code");
-				c2testCode = getCenter2Test(sc);
-				SimpleDateFormat myFormat1 = new SimpleDateFormat("dd/MM/yyyy");
-				Guest gstObject1 = new Guest();
-				try {
-					System.out.println("Enter appointment date (dd/MM/yyyy):");
-					String cindate = sc.next();
-					Date date1 = myFormat1.parse(cindate);
-					gstObject1.setIndate(date1);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				System.out.println("ThankYou \n Your Response Has Been Recorded \n Please visit Again");
-				
-				System.exit(0);
+				boolean inCorrect1 = true;
+				do {
+					System.out.println(c2testlist);
+					System.out.println("select test code");
+
+					c2testCode = getCenter2Test(sc);
+					if (c2testCode > 2) {
+						System.out.println("Invalid Choice!!! Please Select from 1 & 2");
+					} else {
+						inCorrect = false;
+						SimpleDateFormat myFormat1 = new SimpleDateFormat("dd/MM/yyyy");
+						Guest gstObject1 = new Guest();
+						try {
+							System.out.println("Enter appointment date (dd/MM/yyyy):");
+							String cindate = sc.next();
+							Date date1 = myFormat1.parse(cindate);
+							gstObject1.setIndate(date1);
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+						System.out.println(" ThankYou \n Your Response Has Been Recorded \n Please visit Again");
+
+						System.exit(0);
+					}
+
+				} while (inCorrect1);
 				break;
 
 			default:
